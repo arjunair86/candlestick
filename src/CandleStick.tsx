@@ -111,11 +111,12 @@ function drawChart(props: CandleStickProps, chartRef: any, data: any) {
     // mouse move function
     const mmove = (event: any) => {
         let m = d3.pointer(event);
+
         // set position and visiblity of line along y
         d3.select(".mouse-line-y").style("opacity", "1")
-            .attr("x1", event.clientX - margin.left)
+            .attr("x1", Math.floor(xScaleForCandles.invert(m[0])) * xBand.bandwidth() + xBand.bandwidth()/2)
             .attr("y1", height)
-            .attr("x2", event.clientX- margin.left)
+            .attr("x2", Math.floor(xScaleForCandles.invert(m[0])) * xBand.bandwidth() + xBand.bandwidth()/2)
             .attr("y2", "0")
 
         // set position and visiblity pf line along x
